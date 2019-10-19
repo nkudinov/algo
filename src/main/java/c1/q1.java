@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class q1 {
 
-    public static boolean isAllUnique(String str){
+    public static boolean isAllUnique1(String str){
         Set<Character> hs = new HashSet<>();
         for( Character e: str.toCharArray()){
             if (hs.contains(e)){
@@ -18,7 +18,7 @@ public class q1 {
         return true;
     }
 
-    public static boolean isAllUnique1(String str){
+    public static boolean isAllUnique2(String str){
        char [] arr = str.toCharArray();
        Arrays.sort(arr);
        for(int i=0; i < arr.length - 1;i++){
@@ -27,6 +27,17 @@ public class q1 {
            }
        }
        return true;
+    }
+
+    public static boolean isAllUnique3(String str){
+        for(int i = 0; i < str.length();i++){
+            for(int j = i + 1; j<str.length();j++){
+                if (str.charAt(i) == str.charAt(j)){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public static void main(String[] args) {
