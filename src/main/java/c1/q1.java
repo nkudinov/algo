@@ -40,7 +40,38 @@ public class q1 {
         return true;
     }
 
+    public static boolean isAllUnique4(String str){
+
+        if ( str.length() == 256){
+            return false;
+        } else {
+           boolean [] arr = new boolean[256];
+           for(int i = 0; i < str.length(); i++){
+               int index = str.charAt(i);
+               if (arr[index]){
+                   return false;
+               } else {
+                   arr[index] = true;
+               }
+           }
+        }
+        return true;
+    }
+
+    public static boolean isAllUnique5(String str){
+        int checker = 0 ;
+        for(int i = 0; i < str.length(); i++){
+            int val = str.charAt(i) -'a';
+         if ((checker & (1 << val)) > 0){
+             return false;
+         }
+         checker = checker | (1 << val);
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
-        System.out.println( isAllUnique1("pp"));
+        System.out.println( isAllUnique5("abc"));
+        //System.out.println(3 << 1);
     }
 }
