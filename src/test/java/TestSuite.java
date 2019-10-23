@@ -1,6 +1,7 @@
 import c1.q1;
 import c1.q2;
 import c1.q3;
+import c1.q4;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -36,6 +37,13 @@ public class TestSuite {
         assertTrue(q3.isPermutation1("a","a"));
 
         assertFalse(q3.isPermutation1("a","b"));
+    }
+    @Test
+    void q4Test() {
+        assertTrue(Arrays.equals(q4.replaceBlanks(new char[]{'a'}),new char[]{'a'}));
+        assertTrue(Arrays.equals(q4.replaceBlanks(new char[]{'a',' '}),new char[]{'a','%','2','0'}));
+        assertTrue(Arrays.equals(q4.replaceBlanks(new char[]{' ','b','c'}),new char[]{'%','2','0','b','c'}));
+
     }
 
 }
