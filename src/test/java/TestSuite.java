@@ -1,7 +1,6 @@
+import c1.*;
 import c1.q1;
 import c1.q2;
-import c1.q3;
-import c1.q4;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -45,5 +44,10 @@ public class TestSuite {
         assertTrue(Arrays.equals(q4.replaceBlanks(new char[]{' ','b','c'}),new char[]{'%','2','0','b','c'}));
 
     }
-
+    @Test
+    void q5Test() {
+        assertTrue(q5.compress("abc").equals("abc"));
+        assertTrue(q5.compress("aaabc").equals("a3bc"));
+        assertTrue(q5.compress("aaabccc").equals("a3bc3"));
+    }
 }
