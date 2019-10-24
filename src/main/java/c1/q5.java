@@ -19,7 +19,8 @@ public class q5 {
                 ch = str.charAt(i);
             }
         }
-        sb.append(ch);
+        if (ch != null)
+            sb.append(ch);
         if (count > 1){
             sb.append(count);
         }

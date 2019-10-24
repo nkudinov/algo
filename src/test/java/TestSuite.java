@@ -46,6 +46,7 @@ public class TestSuite {
     }
     @Test
     void q5Test() {
+        assertTrue(q5.compress("").equals(""));
         assertTrue(q5.compress("abc").equals("abc"));
         assertTrue(q5.compress("aaabc").equals("a3bc"));
         assertTrue(q5.compress("aaabccc").equals("a3bc3"));
