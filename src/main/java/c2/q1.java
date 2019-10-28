@@ -26,7 +26,7 @@ class Node<A> {
     }
 }
 public class q1 {
-    public static <A>  void removeDublicates(Node<A> head){
+    public static <A>  void removeDublicates1(Node<A> head){
         Set<A> set = new HashSet<>();
         Node<A> elem  = head;
         Node<A> prev  = null;
@@ -40,10 +40,26 @@ public class q1 {
             elem = elem.next;
         }
     }
+    public static <A>  void removeDublicates2(Node<A> head){
+        Node<A> elem  = head;
+        while( elem != null){
+            Node<A> inner  = elem.next;
+            Node<A> prev   = null;
+            while(inner != null){
+                if ( elem.data == inner.data){
+                   prev.next = inner.next;
+                } else {
+                  prev = inner;
+                }
+                inner = inner.next;
+            }
+            elem = elem.next;
+        }
+    }
     public static void main(String[] args) {
         Node<Integer> h = new Node<>(1);
-        h.add(1).add(1);
-        removeDublicates(h);
+        h.add(2).add(1);
+        removeDublicates2(h);
         h.println();
 
     }
