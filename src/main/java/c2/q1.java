@@ -43,8 +43,8 @@ public class q1 {
     public static <A>  void removeDublicates2(Node<A> head){
         Node<A> elem  = head;
         while( elem != null){
-            Node<A> inner  = elem.next;
-            Node<A> prev   = null;
+            Node<A> inner  = elem;
+            Node<A> prev   = inner;
             while(inner != null){
                 if ( elem.data == inner.data){
                    prev.next = inner.next;
@@ -58,7 +58,7 @@ public class q1 {
     }
     public static void main(String[] args) {
         Node<Integer> h = new Node<>(1);
-        h.add(2).add(1);
+        h.add(2).add(3);
         removeDublicates2(h);
         h.println();
 
