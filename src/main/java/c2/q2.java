@@ -50,9 +50,24 @@ public class q2 {
     public static  <A> A nthToLast3(Node<A> head,int n){
       return helper(head,n, new int[1]);
     }
+    public static  <A> A nthToLast4(Node<A> head,int n){
+        Node<A> p1 = head;
+        Node<A> p2 = head;
+        for( int i = 0; i < n;i++){
+            p2  = p2.next;
+            if (p2 == null){
+                return null;
+            }
+        }
+        while(p2 != null){
+            p2 = p2.next;
+            p1 = p1.next;
+        }
+        return p1.data;
+    }
     public static void main(String[] args) {
         Node<Integer> h = new Node<>(1);
         h.add(2).add(3);
-        System.out.println(nthToLast3(h,3));
+        System.out.println(nthToLast4(h,2));
     }
 }
