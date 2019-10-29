@@ -34,11 +34,25 @@ public class q2 {
            }
            return i;
        }
-
+    }
+    private static <A> A helper(Node<A> head,int n,int[] acc){
+        if (head == null){
+            acc[0] = 0;
+            return null;
+        }
+        A a = helper( head.next, n, acc);
+        acc[0] = acc[0] + 1;
+        if (acc[0] == n){
+            return head.data;
+        }
+        return a;
+    }
+    public static  <A> A nthToLast3(Node<A> head,int n){
+      return helper(head,n, new int[1]);
     }
     public static void main(String[] args) {
         Node<Integer> h = new Node<>(1);
         h.add(2).add(3);
-        System.out.println(nthToLast2(h,1));
+        System.out.println(nthToLast3(h,3));
     }
 }
