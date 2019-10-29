@@ -12,7 +12,7 @@ public class q2 {
         }
         return len;
     }
-    public static  <A> A nthToLast(Node<A> head,int n){
+    public static  <A> A nthToLast1(Node<A> head,int n){
         int len = length(head);
         if (len < n){
             throw new IllegalArgumentException("n must be <= " + len);
@@ -24,10 +24,21 @@ public class q2 {
         }
         return current.data;
     }
+    public static  <A> int nthToLast2(Node<A> head,int n){
+       if (head == null){
+           return 0;
+       } else {
+           int i = nthToLast2(head.next,n )+1;
+           if (i == n){
+               System.out.println(head.data);
+           }
+           return i;
+       }
 
+    }
     public static void main(String[] args) {
         Node<Integer> h = new Node<>(1);
         h.add(2).add(3);
-        System.out.println(nthToLast(h,10));
+        System.out.println(nthToLast2(h,1));
     }
 }
