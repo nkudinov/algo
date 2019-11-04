@@ -16,7 +16,7 @@ public class q6 {
         if (slow == null || fast.next == null){
             return null;
         }
-        slow = head
+        slow = head;
         while ( slow != fast){
             slow = slow.next;
             fast = fast.next;
