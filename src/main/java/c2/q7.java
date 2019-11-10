@@ -36,7 +36,7 @@ public class q7 {
            slow = slow.next;
            fast = fast.next.next;
        }
-       if (fast!=null){
+       if ( fast!=null ){
            slow = slow.next;
        }
        while ( slow != null){
