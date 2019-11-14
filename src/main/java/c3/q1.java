@@ -1,6 +1,7 @@
 package c3;
 
 class Stack3 {
+
     int stackSize;
     int buffer[];
     int [] pointer = new int[] {-1,-1,-1};
@@ -68,13 +69,13 @@ public class q1 {
       stack.push(0,1);
       stack.push(0,2);
       stack.pop(0);
-        stack.pop(0);
+      stack.pop(0);
+      stack.push(0,3);
 
       stack.push(1,1);
       stack.push(1,2);
       stack.pop(1);
       stack.pop(1);
-
       stack.push(1,1);
       stack.push(1,2);
 
