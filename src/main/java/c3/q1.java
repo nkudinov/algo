@@ -35,8 +35,21 @@ class Stack2 {
                throw new IllegalStateException("stack is full (1)");
         }
     }
+    public int pop(int index){
+        if (index == 0){
+            if (index0 >= 0){
+                return arr[index0--];
+            } else
+                throw new IllegalStateException("stack is empty(0)");
+        } else {
+            if (index1 <= size -1 ){
+                return arr[index1++];
+            } else
+                throw new IllegalStateException("stack is empty(1)");
+        }
+    }
     public void print(){
-        if (index0 > 0 ) {
+        if (index0 >= 0 ) {
             for (int i = 0; i <= index0; i++) {
                 System.out.print(arr[i] + " ");
             }
@@ -54,9 +67,17 @@ public class q1 {
       Stack2 stack = new Stack2(10);
       stack.push(0,1);
       stack.push(0,2);
+      stack.pop(0);
+        stack.pop(0);
 
       stack.push(1,1);
       stack.push(1,2);
+      stack.pop(1);
+      stack.pop(1);
+
+      stack.push(1,1);
+      stack.push(1,2);
+
       stack.print();
     }
 }
