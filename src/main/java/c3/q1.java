@@ -24,6 +24,10 @@ class Stack3 {
           for(int i = index2; i > index1; i--){
               arr[i+1] = arr[i];
           }
+      } else {
+          for(int i = index1; i < index2 ; i++){
+              arr[i] = arr[i+1];
+          }
       }
     }
 
@@ -49,6 +53,7 @@ class Stack3 {
     public int pop(int index){
         if (index == 0) {
             shift(-1);
+            index2--;
             return arr[index1--];
         } else if ( index == 1 ) {
             if (index2 >= 0){
@@ -57,6 +62,7 @@ class Stack3 {
                 throw new IllegalStateException("stack is empty(2)");
         }
         else {
+
             if (index3 <= size -1 ){
                 return arr[index3++];
             } else
@@ -140,15 +146,16 @@ public class q1 {
       Stack3 stack = new Stack3(10);
 
       stack.push(0,3);
+
+      stack.push(1,11);
+      stack.push(1,12);
+
+      stack.push(2,2);
+      stack.push(2,2);
+
       stack.pop(0);
       stack.push(0,5);
 
-      stack.push(1,1);
-      stack.push(1,1);
-
-
-      stack.push(2,2);
-      stack.push(2,2);
 
       stack.print();
     }
