@@ -10,6 +10,7 @@ class Stack3 {
     int [] pointer = new int[] {-1,-1,-1};
 
     public Stack3(int size) {
+
         this.size = size;
         this.arr  = new int[this.size];
         index1 = -1;
@@ -17,16 +18,23 @@ class Stack3 {
         index3 = size;
     }
 
-    public void shift(int delat){
+    public void shift(int delta){
+      if (delta > 0 ){
 
+          for(int i = index2; i > index1; i--){
+              arr[i+1] = arr[i];
+          }
+      }
     }
 
     public void push(int index, int value){
         if (index == 0 ){
            shift(+1);
-           arr[index1++] = value;
+           arr[++index1] = value;
         }
         else if (index == 1){
+            if (index2 == -1)
+                index2 = index1;
             if (index2 + 1 <= index3){
                 arr[++index2] = value;
             } else
@@ -55,7 +63,14 @@ class Stack3 {
                 throw new IllegalStateException("stack is empty(3)");
         }
     }
-    public void print(){
+    public void print() {
+
+        if (index1 >= 0 ) {
+            for (int i = 0; i <= index1; i++) {
+                System.out.print(arr[i] + " ");
+            }
+        }
+        System.out.println(" ");
         if (index2 >= 0 ) {
             for (int i = index1 + 1; i <= index2; i++) {
                 System.out.print(arr[i] + " ");
@@ -68,7 +83,6 @@ class Stack3 {
             }
         }
     }
-
 }
 class Stack2 {
     int size;
@@ -124,6 +138,10 @@ class Stack2 {
 public class q1 {
     public static void main(String[] args) {
       Stack3 stack = new Stack3(10);
+
+      stack.push(0,3);
+      stack.pop(0);
+      stack.push(0,5);
 
       stack.push(1,1);
       stack.push(1,1);
