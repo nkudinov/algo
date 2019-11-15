@@ -35,6 +35,7 @@ class Stack3 {
         if (index == 0 ){
            shift(+1);
            arr[++index1] = value;
+           ++index2;
         }
         else if (index == 1){
             if (index2 == -1)
@@ -145,7 +146,7 @@ public class q1 {
     public static void main(String[] args) {
       Stack3 stack = new Stack3(10);
 
-      stack.push(0,3);
+    //  stack.push(0,3);
 
       stack.push(1,11);
       stack.push(1,12);
@@ -153,7 +154,7 @@ public class q1 {
       stack.push(2,2);
       stack.push(2,2);
 
-      stack.pop(0);
+    //  stack.pop(0);
       stack.push(0,5);
 
 
