@@ -10,7 +10,11 @@ public class q1 {
      if (root == null){
          return true;
      } else {
-         return Math.abs( height(root.left) - height(root.right) ) <= 1;
+         if (Math.abs( height(root.left) - height(root.right) ) <= 1){
+             return false;
+         } else {
+             return isBalanced(root.left) && isBalanced(root.right);
+         }
      }
  }
  public static int height(Tree root){
