@@ -1,8 +1,8 @@
 package gci;
 
 public class bag {
-    public static double backpack(int W, String[] names, double[] costs, int[] weights) {
-      double [][] matrix = new double[names.length+1][W+1];
+    public static double backpack(int W,  double[] costs, int[] weights) {
+      double [][] matrix = new double[costs.length+1][W+1];
       for(int i = 0; i < matrix.length; i++ ){
           for(int w = 0; w <= W; w++){
               if ( i == 0 || w == 0 ){
@@ -19,13 +19,13 @@ public class bag {
               }
           }
       }
-      return matrix[names.length][W];
+      return matrix[matrix.length-1][W];
     }
     public static void main(String[] args) {
         int W = 4;
-        String [] names   = new String[]{"магнитофон","notebook","gitar"};
+        String [] names   = new String[]{"магнитофон","notebook","гитара"};
         double [] costs   = new double[]{ 3000,2000,1500};
         int [] weights    = new int[]{ 4, 3, 1};
-        System.out.println(backpack(W,names, costs, weights));
+        System.out.println(backpack(W, costs, weights));
     }
 }

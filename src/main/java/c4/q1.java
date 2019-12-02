@@ -3,6 +3,7 @@ package c4;
 class Tree {
     Tree left;
     Tree right;
+    Tree parent;
 }
 public class q1 {
 
