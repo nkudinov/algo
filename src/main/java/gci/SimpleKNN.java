@@ -3,29 +3,30 @@ package gci;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 public class SimpleKNN {
-    static class DistanceComparator implements Comparator<Distance> {
-        @Override
-        public int compare(Distance x, Distance y) {
-            // which would be more efficient.
-            if (x.distance < y.distance) {
-                return -1;
-            }
-            if (x.distance > y.distance) {
-                return 1;
-            }
-            return 0;
-        }
-    }
-    static class Distance {
+    static class Distance implements Comparable{
         int pointIndex;
         double distance;
 
         public Distance(int pointIndex, double distance) {
             this.pointIndex = pointIndex;
             this.distance = distance;
+        }
+
+        @Override
+        public int compareTo(@NotNull Object o) {
+            Distance y = (Distance)o;
+            if (distance < y.distance) {
+                return -1;
+            }
+            if (distance > y.distance) {
+                return 1;
+            }
+            return 0;
         }
 
         @Override
@@ -40,9 +41,23 @@ public class SimpleKNN {
         }
         return Math.sqrt(tmp);
     }
+    public static int getCategory(int[] indexes,int[] target){
+        HashMap<Integer,Integer> cat = new HashMap<>();
+        for(int i=0; i< indexes.length;i++){
+          cat.merge(target[i],1, (a,b) -> a+b+1);
+        }
+        Map.Entry<Integer,Integer> max;
+        for(Map.Entry<Integer,Integer> e: cat.entrySet()){
+            if (max == null)
+                max = e;
+            System.out.println(e);
+            if (e.getValue() > max.getValue())
+                max =e;
+        }
+        return max.getKey();
+    }
     public static int predict(int k, double[] x, double[][] data, int[] target){
-        Comparator<Distance> comparator = new DistanceComparator();
-        PriorityQueue<Distance> q = new PriorityQueue<>(comparator);
+        PriorityQueue<Distance> q = new PriorityQueue<>();
         for(int i=0;i <data.length;i++){
             q.add(new Distance(i, distance(x,data[i])));
         }
