@@ -46,7 +46,7 @@ public class SimpleKNN {
         for(int i=0; i< indexes.length;i++){
           cat.merge(target[i],1, (a,b) -> a+b+1);
         }
-        Map.Entry<Integer,Integer> max;
+        Map.Entry<Integer,Integer> max = null;
         for(Map.Entry<Integer,Integer> e: cat.entrySet()){
             if (max == null)
                 max = e;
@@ -229,6 +229,7 @@ public class SimpleKNN {
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
+
         System.out.println(predict(3, new double[]{6.2, 2.8, 4.8, 1.8}, data, target));
      }
 
