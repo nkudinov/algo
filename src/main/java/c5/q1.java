@@ -4,7 +4,7 @@ public class q1 {
 
     public static int updateBits(int n, int m ,int i,int j){
        int l = ~0 << j+1;
-       int r =  1 << (i-1);
+       int r =  (1 << i)-1;
        int mask = l | r;
        System.out.println(Integer.toBinaryString(l));
        System.out.println(Integer.toBinaryString(r));
