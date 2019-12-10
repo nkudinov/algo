@@ -31,5 +31,7 @@ public class q2 {
     public static void main(String[] args) {
         System.out.println(toBinaryString1(0.72));
         System.out.println(toBinaryString2(0.72));
+        System.out.println(toBinaryString1(0.5));
+        System.out.println(toBinaryString2(0.5));
     }
 }
