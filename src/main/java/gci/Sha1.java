@@ -16,7 +16,7 @@ public class Sha1 {
 
         // Convert a string to a sequence of 16-word blocks, stored as an array.
         // Append padding bits and the length, as described in the SHA1 standard
-        int len = (((x.length + 8)>>2>>2>>2) + 1) * 16;
+        int len = (((x.length + 8)>>6) + 1) * 16;
         int[] blks = new int[len];
         int i;
 
@@ -91,7 +91,7 @@ public class Sha1 {
     }
 
     public static void main(String[] args) throws Exception {
-        Sha1 sha = new Sha1("a");
+        Sha1 sha = new Sha1("Rosetta Code");
         System.out.println( sha.hash());
     }
 
