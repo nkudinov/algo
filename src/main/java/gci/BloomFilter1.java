@@ -53,7 +53,7 @@ public class BloomFilter1 {
        bf.add(s1);
        System.out.println(bf.contains(n1));
        System.out.println(bf.contains(s1));
-        System.out.println(bf.contains(1111));
-        System.out.println(bf.contains("world"));
+       System.out.println(bf.contains(1111));
+       System.out.println(bf.contains("world"));
     }
 }
