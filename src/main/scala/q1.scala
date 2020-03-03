@@ -3,4 +3,6 @@ object q1 extends App {
    str.groupBy(identity).forall(_._2.length == 1)
  }
   println(isAllUnique1("h"))
+  println("kkk222dd".filterNot(_.isDigit))
+  "TTTT".toLowerCase
 }

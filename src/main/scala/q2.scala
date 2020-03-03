@@ -10,4 +10,6 @@ object q2 extends App {
    helper(list, List.empty[Int])
  }
  println(reverse(List(1,2,3)).mkString(","))
+
+
 }
