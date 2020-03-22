@@ -24,7 +24,7 @@ public class q1 {
            acc.add(cur);
         } else {
             for (int i = 1; i <= m; i++) {
-                 rec( idx +1 , n, m,acc,cur+i);
+                 rec( idx +1 , n, m, acc,cur+i);
             }
         }
         return acc;
