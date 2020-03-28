@@ -1,7 +1,10 @@
 package c11;
 
+import java.util.Arrays;
+
 public class q3 {
     static int binarySearch(int[] a, int x, int l, int h){
+
         int start = l;
         int end   = h;
         int m = 0;
@@ -18,10 +21,11 @@ public class q3 {
 
         }
         return -1;
+
     }
 
-
     static int find(int[] a, int x, int l, int h) {
+
         if (l > h)
             return -1;
         else {
@@ -38,9 +42,12 @@ public class q3 {
             }
             return -1;
         }
+
     }
     public static void main(String[] args) {
+
         int[] arr = {15, 16, 19, 20, 25, 1, 3, 4, 5, 7, 10, 14};
         System.out.println( find(arr,10,0, arr.length-1));
+
     }
 }
