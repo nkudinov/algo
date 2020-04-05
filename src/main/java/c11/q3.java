@@ -21,7 +21,6 @@ public class q3 {
 
         }
         return -1;
-
     }
 
     static int find(int[] a, int x, int l, int h) {
