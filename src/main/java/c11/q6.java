@@ -40,7 +40,7 @@ public class q6 {
           } else if ( arr[row][col] > x){
               col--;
           } else {
-             row++;
+              row++;
           }
        }
        return null;
