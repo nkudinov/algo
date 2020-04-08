@@ -17,6 +17,8 @@ public class q14 {
           if (found){
               if (str.length() > ret.length())
                   ret = str;
+          } else {
+              return ret;
           }
       }
       return ret;
