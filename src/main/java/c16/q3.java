@@ -1,8 +1,10 @@
+package c16;
+
 import java.util.Random;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class p13 {
+public class q3 {
     static class Chopstick {
         private Lock lock;
 
