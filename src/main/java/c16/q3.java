@@ -1,6 +1,8 @@
 package c16;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -101,5 +103,6 @@ public class q3 {
         t.fill();
         t.start();
         System.out.println("finish");
+
     }
 }
