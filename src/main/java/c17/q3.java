@@ -1,6 +1,7 @@
 package c17;
 
 public class q3 {
+
     static public int getTrailingZerosOfFactorial(int n){
         // 100!= 2*3...25...100
         int d = 1;
