@@ -8,6 +8,9 @@ public class q7 {
 
     public static String num2String100(int x){
         StringBuilder sb = new StringBuilder();
+        if (x == 0 ){
+            return "zero";
+        }
         if (x > 100){
             sb.append(digits[x/100-1]);
             sb.append(" hundred");
@@ -29,20 +32,19 @@ public class q7 {
         return sb.toString();
     }
     public static String spell(int x){
-      StringBuilder sb = new StringBuilder();
+      String str ="";
 
       int count = 0;
       while(x !=0){
-          if (x%1000 !=0 ) {
-              sb.append(num2String100(x % 1000));
-              sb.append(bigs[count]);
+          if ( x%1000 !=0 ) {
+              str = num2String100(x % 1000) + bigs[count] +" " + str;
           }
-          x = x/1000;
+          x = x / 1000;
           count++;
       }
-      return sb.toString();
+      return str;
     }
     public static void main(String[] args) {
-        System.out.println(spell(2001));
+        System.out.println(spell(2021));
     }
 }
