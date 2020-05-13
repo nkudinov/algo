@@ -71,8 +71,9 @@ object Matrix{
 
 }
 object Test extends App {
-  val m1 = new Matrix(Array(ROW(1,2,3),ROW(1,2,3),ROW(1,2,3)))
-  val m2 = new Matrix(Array(COLUMN(1,2,7)))
+
+  val m1 = new Matrix(Array(ROW(-1,1),ROW(2,0),ROW(0,3)))
+  val m2 = new Matrix(Array(ROW(3,1,2),ROW(0,-1,4)))
 
   m1.print
 
