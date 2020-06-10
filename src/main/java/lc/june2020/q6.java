@@ -1,7 +1,9 @@
 package lc.june2020;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 
 public class q6 {
     static public int getIndex(int[][] arr, int[] e){
@@ -35,9 +37,19 @@ public class q6 {
        }
        return ret;
     }
+    static public int[][] reconstructQueue2(int[][] people) {
+        Arrays.sort(people, (a, b) -> (a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]));
+        List<int[]> list = new ArrayList();
+        for (int[] p : people) {
+            list.add(p[1], p);
+        }
+        return list.toArray(new int[people.length][2]);
+    }
     public static void main(String[] args) {
        int[][] arr = new int[][]{{7,0}, {4,4}, {7,1}, {5,0}, {6,1}, {5,2}};
-        for(int[] e:reconstructQueue(arr)){
+
+
+        for(int[] e:reconstructQueue2(arr)){
             System.out.println(Arrays.toString(e));
         }
     }
