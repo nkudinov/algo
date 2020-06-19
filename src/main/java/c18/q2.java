@@ -71,7 +71,7 @@ public class q2 {
         int N = 100000;
         int[][] hits = new int[cards.length][cards.length];
         for(int i =0; i < N; i++){
-            int[] tmp = shuffle3(cards);
+            int[] tmp = shuffle2(cards);
             for(int j = 0; j < M; j++){
                 hits[j][getIndexByValue(j, tmp)] +=1;
             }
@@ -79,7 +79,7 @@ public class q2 {
 
         for(int[] e:hits){
             double[] arr = new double[e.length];
-            for(int i=0;i<e.length;i++){
+            for(int i=0; i<e.length; i++){
                 arr[i] = Math.round(e[i]*1.0/N*100.0)/100.0;
             }
             System.out.println(Arrays.toString(arr));
