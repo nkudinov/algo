@@ -43,8 +43,8 @@ public class q3 {
         for(String s:permutate("abcd")){
             System.out.println(s);
         }
-//        System.out.println(insert('a',"bc",0));
-//        System.out.println(insert('a',"bc",1));
-//        System.out.println(insert('a',"bc",2));
+// System.out.println(insert('a',"bc",0));
+// System.out.println(insert('a',"bc",1));
+// System.out.println(insert('a',"bc",2));
     }
 }
