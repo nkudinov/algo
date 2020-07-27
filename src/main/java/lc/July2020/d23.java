@@ -22,7 +22,7 @@ public class d23 {
     }
     public static void main(String[] args) {
         int[] arr = new int[] {1,2,1,3,2,5};
-        Integer.highestOneBit(diff);
+      //  Integer.highestOneBit(diff);
         System.out.println(Arrays.toString(singleNumber(arr)));
     }
 
