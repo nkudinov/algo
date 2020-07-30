@@ -4,6 +4,7 @@ import scala.Int;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 
 public class Join {
@@ -12,23 +13,29 @@ public class Join {
         Integer righRow;
         Iterator<Integer> left;
         Iterator<Integer> right;
+        List<Integer> rightBufferedRows;
         private Integer AdvancedNext(Iterator<Integer> iter){
             if (iter.hasNext()){
                 return iter.next();
             }
             return null;
         }
+
         private boolean findNextInnerJoinRows(){
-          if ( leftRow == null){
-              leftRow = AdvancedNext(left);
-          }
-          righRow = AdvancedNext(right);
+
+          leftRow = AdvancedNext(left);
+
           if (leftRow == null){
               return false;
-          } else if (righRow == null){
+          } else if ( !right.hasNext() ){
               return false;
+          } else if (righRow!= null && leftRow.compareTo(righRow) == 0) {
+              return true;
           } else {
               do {
+                  if ( righRow == null){
+                      righRow = AdvancedNext(right);
+                  }
                  int comp = leftRow.compareTo(righRow);
                  if (comp < 0){
                      leftRow = AdvancedNext(left);
@@ -42,6 +49,7 @@ public class Join {
               return false;
           }
         }
+
         public JoinIntegerIterator(Iterator<Integer> left, Iterator<Integer> right) {
             this.left = left;
             this.right = right;
@@ -67,11 +75,13 @@ public class Join {
 
     }
     public static void main(String[] args) {
-        Iterator<Integer> l = Arrays.stream(new int[]{1,1}).iterator();
+
+        Iterator<Integer> l = Arrays.stream(new int[]{1,1,1,1}).iterator();
         Iterator<Integer> r = Arrays.stream(new int[]{1,2,3,4}).iterator();
         Iterator<Integer> o = join(l, r);
+
         while(o.hasNext()){
-            System.out.println(o.next());
+            System.out.println( o.next());
         }
 
     }
