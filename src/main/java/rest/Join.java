@@ -29,13 +29,13 @@ public class Join {
               return false;
           } else if ( !right.hasNext() ){
               return false;
-          } else if (righRow!= null && leftRow.compareTo(righRow) == 0) {
+          } else if ( righRow!= null && leftRow.compareTo(righRow) == 0) {
               return true;
           } else {
               do {
-                  if ( righRow == null){
+                 if ( righRow == null){
                       righRow = AdvancedNext(right);
-                  }
+                 }
                  int comp = leftRow.compareTo(righRow);
                  if (comp < 0){
                      leftRow = AdvancedNext(left);
@@ -77,7 +77,7 @@ public class Join {
     public static void main(String[] args) {
 
         Iterator<Integer> l = Arrays.stream(new int[]{1,1,1,1}).iterator();
-        Iterator<Integer> r = Arrays.stream(new int[]{1,2,3,4}).iterator();
+        Iterator<Integer> r = Arrays.stream(new int[]{1,2,2,2}).iterator();
         Iterator<Integer> o = join(l, r);
 
         while(o.hasNext()){
