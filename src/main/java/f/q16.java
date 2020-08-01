@@ -58,18 +58,21 @@ public class q16 {
         }
         Node temp = head;
         Node curr = head;
-        // curr.
-        while(curr!=null && curr.data%2 == 0 ){
+        // 2 -> 8->10
+        //
+        while( curr!=null && curr.data%2 == 0 ){
             temp = curr.next;
             curr.next = prev;
             prev = curr;
             curr = temp;
         }
-        if ( curr!=head){
+
+        if ( curr != head){
             head.next = curr;
             curr = reverse(curr, null);
             return prev;
         } else {
+            //
             head.next = reverse( head.next, head);
             return head;
         }
