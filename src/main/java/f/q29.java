@@ -6,64 +6,34 @@ import scala.Int;
 import java.util.*;
 
 public class q29 {
-    public static int[] insert(int[] arr, int index, int value) {
-        int[] ret = new int[arr.length+1];
-        int i = 0;
-        int j = 0;
-        while( i!= index){
-            ret[i] = arr[j];
-            i++;
-            j++;
+    // 1,2,3,4,7,6,5,3,2
+    public  static void swap(int[] nums, int i, int j){
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+    public static void reverse(int[] nums, int start){
+        int i = start;
+        int j = nums.length-1;
+        while(i < j){
+          swap(nums, i, j);
+          i++;
+          j--;
         }
-        ret[i] = value;
-        i++;
-        while( i < ret.length){
-            ret[i] = arr[j];
-            i++;
-            j++;
-        }
-        return ret;
     }
     public static void nextPermutation(int[] nums) {
-        Queue<int[]> q = new LinkedList<>();
-
-        for(int i = 0; i < nums.length; i++){
-            if (i == 0){
-                int[] arr = new int[]{nums[i]};
-                q.add(arr);
-            } else {
-              int n = q.size();
-              for(int j = 1 ; j <=n ;j++){
-                  int[] tmp  = q.poll();
-                  for(int k = 0; k <= tmp.length; k++){
-                      q.add( insert(tmp, k, nums[i]));
-                  }
-              }
-            }
-        }
-        int n = q.size();
-        int[][] tmp = new int[n][];
-        String[] permutations = new String[n];
-        for(int i = 0; i <n ; i++){
-            int[] arr = q.poll();
-            permutations[i] = Arrays.toString(arr);
-            tmp[i] = arr;
-        }
-
-        Arrays.sort( permutations);
-        System.out.println(Arrays.toString(permutations));
-        int index = Arrays.binarySearch(permutations, Arrays.toString(nums));
-        System.out.println(index);
-        String str = permutations[(index+1)%permutations.length];
-        for(int i = 0; i < tmp.length; i++){
-            if (Arrays.toString(tmp[i]).equals(str)){
-                index = i;
-            }
-        }
-        for(int i = 0; i < nums.length;i++){
-            nums[i] = tmp[index][i];
-        }
-
+       int i = nums.length-2;
+       while (i>=0 && nums[i+1] <= nums[i]){
+           i--;
+       }
+       if (i !=0 ){
+           int j = nums.length-1;
+           while(j >=0 && nums[j] <= nums[i]){
+               j--;
+           }
+           swap(nums,i,j);
+       }
+       reverse(nums, i +1);
     }
     public static void main(String[] args) {
         int[] arr = new int[]{1,1,5};
