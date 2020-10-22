@@ -28,7 +28,6 @@ public class d32 {
         return new ArrayList<>(ret);
     }
     public static void main(String[] args) {
-        Integer.valueOf(1).compareTo()
         for(List<Integer> l:permute(new int[]{1,2,3})){
             System.out.println(l);
         }

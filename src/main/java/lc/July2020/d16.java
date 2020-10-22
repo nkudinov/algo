@@ -50,7 +50,7 @@ public class d16 {
     }
     public static void main(String[] args) {
         System.out.println(myPow2(2,-2147483648));
-        Integer.valueOf(1).compareTo()
+
 //     System.out.println(myPow(2.00000,-2147483648));
     }
 }
