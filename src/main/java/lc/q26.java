@@ -1,6 +1,7 @@
 package lc;
 
 import java.util.Stack;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class q26 {
     static public int calculate1(String s) {
@@ -67,6 +68,8 @@ public class q26 {
        return r;
     }
     public static void main(String[] args) {
+        AtomicInteger maxSum = new AtomicInteger(Integer.MIN_VALUE);
+
         System.out.println(calculate("2+3*4"));
     }
 }

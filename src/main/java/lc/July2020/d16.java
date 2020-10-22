@@ -27,9 +27,30 @@ public class d16 {
       }
       return ret;
     }
+    static public double myPow2(double x, int n) {
+        int N = n;
+        if ( n > 0 ){
+            N = -N;
+        }
+        double ans = 1.0;
+        while ( N < 0 ){
+            int count = 1;
+            double temp = x;
+            while ( -count > Integer.MIN_VALUE/2 && -count * 2 >= N){
+                temp = temp * temp;
+                count = count * 2;
+            }
+            N += count;
+            ans = ans *temp;
+        }
+        if ( n < 0 ) {
+            return 1/ans;
+        }
+        return ans;
+    }
     public static void main(String[] args) {
-
-
-        System.out.println(myPow(2.00000,-2147483648));
+        System.out.println(myPow2(2,-2147483648));
+        Integer.valueOf(1).compareTo()
+//     System.out.println(myPow(2.00000,-2147483648));
     }
 }
