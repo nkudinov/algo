@@ -12,10 +12,16 @@ public class q3 {
                 heap.poll();
             }
         }
+        //5,6
+        for(int e:heap){
+            System.out.println("e="+e);
+        }
         return heap.poll();
     }
     public static void main(String[] args) {
-       int value = findKthLargest(new int[]{1,2,3,4,5},2);
+        //[3,2,1,5,6,4]
+        //2
+       int value = findKthLargest(new int[]{3,2,1,5,6,4},2);
        System.out.println(value);
 
     }
