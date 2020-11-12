@@ -28,9 +28,18 @@ public class q8 {
         }
         return ans;
     }
+    public static  List<String> topKFrequentV2(String[] words, int k) {
+        Map<String,Integer> map = new HashMap<>();
+        for(String word: words){
+            map.merge(word,1,(a,b) -> a + b);
+        }
+        List<String> arr = new ArrayList<>(map.keySet());
+        Collections.sort( arr, (a, b) -> map.get(b)-map.get(a) != 0? map.get(b)-map.get(a) : a.compareTo(b));
 
+        return arr.subList(0, k);
+    }
     public static void main(String[] args) {
-        for(String s:topKFrequent(new String[]{"i", "love", "leetcode", "i", "love", "coding"},2)){
+        for(String s:topKFrequentV2(new String[]{"i", "love", "leetcode", "i", "love", "coding"},2)){
             System.out.println(s);
         };
     }
