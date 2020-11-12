@@ -41,7 +41,7 @@ public class q8 {
     public static void main(String[] args) {
         for(String s:topKFrequentV2(new String[]{"i", "love", "leetcode", "i", "love", "coding"},2)){
             System.out.println(s);
-        };
+        }
     }
 
 }
