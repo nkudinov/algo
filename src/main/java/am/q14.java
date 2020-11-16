@@ -8,12 +8,12 @@ public class q14 {
         int m = nums2.length;
         while ( i < n || j < m) {
             if (i < n && (j >= m || nums1[i] < nums2[j])) {
-                if (  i + j == k){
+                if (  i + j == k ){
                     return nums1[i];
                 }
                 i++;
             } else {
-                if ( i + j == k){
+                if ( i + j == k ){
                     return nums2[j];
                 }
                 j++;
