@@ -11,6 +11,7 @@ public class q25 {
         q.add(new Pair<>(r, c));
         int cnt = 0;
         lst.add(""+cnt);
+
        // grid[r][c] = grid[r][c]+2;
         int[][] directions = new int[][]{{-1,-1},{1,0},{0,1},{1,1},{0,-1},{-1,0},{1,-1},{-1,1}};
         while(!q.isEmpty()){
