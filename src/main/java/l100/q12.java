@@ -31,7 +31,7 @@ public class q12 {
         List<Integer> ans = new ArrayList<>();
         while(true){
            for(int i = 0; i < str.length() - len; i++){
-               int curr = Integer.parseInt(str.substring(i, i +len));
+               int curr = Integer.parseInt( str.substring(i, i +len));
                if (curr > high){
                    return ans;
                }
