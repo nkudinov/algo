@@ -8,7 +8,7 @@ public class q24 {
         for(int i = 0; i < N; i++){
             int maxLen = 0;
             //[[1,2], [2,3], [3,4]]
-            int c = pairs[i][0];
+            int c = pairs[i][1];
             int d = pairs[i][1];
             for(int j = 0; j < i; j++){
                 int a = pairs[j][0];
