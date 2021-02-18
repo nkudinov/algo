@@ -6,7 +6,8 @@ public class q40 {
            return false;
        }
        int k = 0;
-       while(  k < j){
+
+       while(  i+k <= j){
            if (arr1[i+k] != arr2[i2+k]){
                return false;
            }
@@ -45,5 +46,6 @@ public class q40 {
 
     public static void main(String[] args) {
         System.out.println(isSubstring("BAA","AA"));
+        System.out.println(isSubstring("BDAAC","AAA"));
     }
 }
