@@ -17,13 +17,14 @@ public class q40 {
     }
     static int calcHash(char[] arr, int i, int j){
         int ans = 0;
-        for(int k = i ; k <= j; k++){
-           ans = ans + (arr[k]-'A'+1);
+        for(int k = i ; k <=j; k++){
+           ans = ans*10 + (arr[k]-'A'+1);
         }
         return ans;
     }
     static boolean isSubstring(String str, String s){
         int M = s.length();
+        int pow = (int)Math.pow(10,M-1);
         int N = str.length();
         char sub[] = s.toCharArray();
         char[] arr = str.toCharArray();
@@ -36,7 +37,7 @@ public class q40 {
             int first = (arr[i-M]-'A'+1);
             int last  = (arr[i]-'A'+1);
 
-            winHash = winHash + last - first;
+            winHash = (winHash -first*pow)*10 + last;
             if (winHash == subHash && equals(arr,i-M+1, i, sub, 0, M-1)){
                 return true;
             }
