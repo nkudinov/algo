@@ -10,7 +10,7 @@ public class q59 {
         if (curr.size() == arr.length ){
             acc.add(new ArrayList<>(curr));
         } else {
-           for(int i = 0; i < arr.length; i++){
+           for( int i = 0; i < arr.length; i++){
                if ( !seen.contains(i)){
                    seen.add(i);
                    curr.add(arr[i]);
