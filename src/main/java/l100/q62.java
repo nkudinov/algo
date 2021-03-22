@@ -1,6 +1,7 @@
 package l100;
 
 import java.security.MessageDigest;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ public class q62 {
         MessageDigest md;
         Codec(){
             try {
+
                 md = MessageDigest.getInstance("MD5");
             } catch (Exception e){
                 e.printStackTrace();
@@ -17,20 +19,14 @@ public class q62 {
         }
         public String shorturl(String str){
             md.update(str.getBytes());
-            byte[] digest = md.digest();
-            StringBuilder sb = new StringBuilder();
-            for(int i = 0; i < 10; i++){
-                sb.append(Integer.toHexString(Math.abs(digest[i])%16));
-            }
-            return sb.toString();
+            return Base64.getEncoder().encodeToString(md.digest()).substring(10);
         }
-        // Encodes a URL to a shortened URL.
         public String encode(String longUrl) {
               int i = 0;
               String ans = shorturl(longUrl);
               while(map.containsKey(ans) ){
                   i++;
-                  ans = shorturl(longUrl +"i");
+                  ans = shorturl(longUrl + i);
               }
               return  ans;
         }
@@ -42,6 +38,10 @@ public class q62 {
     }
     public static void main(String[] args) throws Exception {
         Codec c = new Codec();
-        System.out.println(c.encode("https://leetcode.com/problems/design-tinyurl"));
+        System.out.println(c.encode("3"));
+        System.out.println(c.encode("10"));
+
+
+
     }
 }
