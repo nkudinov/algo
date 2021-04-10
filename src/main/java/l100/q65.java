@@ -18,7 +18,7 @@ public class q65 {
         return ans[0]+1;
     }
     public static void main(String[] args) {
-        int[] arr = new int[]{3,6,9,12};
+        int[] arr = new int[]{ 3,6,9,12};
         System.out.println(longestArithSeqLength(arr));
     }
 
