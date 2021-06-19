@@ -3,7 +3,7 @@ package ss;
 import java.util.*;
 
 public class q16 {
-    public int leastInterval(char[] tasks, int n) {
+    public static int leastInterval(char[] tasks, int n) {
         Map<Character, Integer> map = new HashMap<>();
         for(char ch: tasks){
             map.merge(ch , 1 , (a,b) ->  a + b);
@@ -34,8 +34,8 @@ public class q16 {
         return ans;
     }
     public static void main(String[] args) {
-        int x = leastInterval(new char[]{'A','A','A','B','B','B'},2 );
-        System.out.println(x);
+        leastInterval(new char[]{'A','A','A','B','B','B'},2 );
+
     }
 
 
