@@ -1,14 +1,13 @@
 package m;
 
 public class q1 {
-    public static double solution(int[] A) {
+    public static int solution(int[] A) {
         int sum = 0;
         for(int x:A){
             sum += x;
         }
-        double avg =  1.0*sum/A.length;
-        System.out.println(avg);
-        double ans = 0;
+        int avg = (int)Math.ceil(1.0*sum/A.length);
+        int ans = 0;
         for(int x:A){
             ans += Math.abs(avg-x);
         }

@@ -59,10 +59,11 @@ public class q3 {
         int[] A = new int[]{2,2,1,2};
         int[] B = new int[]{1,3,4,4};
         System.out.println(solution(N,A,B));
-
+        //31
         N = 3;
         A = new int[]{1};
         B = new int[]{3};
         System.out.println(solution(N,A,B));
+        //5
     }
 }
