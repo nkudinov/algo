@@ -1,6 +1,5 @@
 package c1;
 
-import scala.Char;
 
 public class q5 {
     public static String compress(String str){
