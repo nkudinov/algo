@@ -14,10 +14,9 @@ public class Snake {
     public static void main(String[] args) {
         snake.add(new int[]{0, 0});
         char input = '?';
-
+        placeObstacle();
         while (input != 'x') {
             System.out.println("Enter command: x - exit, l - left, r - right, u - up, d - down");
-            placeObstacle();
             displayBoard();
             input = scanner.nextLine().charAt(0);
             moveSnake(input);
