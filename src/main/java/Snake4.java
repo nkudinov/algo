@@ -22,16 +22,17 @@ public class Snake4 {
             if (op == 'x') {
                 break;
             } else {
-                move(board, snake, op);
+                moveSnake(board, snake, op);
             }
         }
     }
-   public static void display(int[][] board, List<int[]> snake) {
+
+    public static void display(int[][] board, List<int[]> snake) {
         int rows = board.length;
         int cols = board[0].length;
         char[][] disp = new char[rows][cols];
-        for(int i = 0; i < rows; i++) {
-            for(int j = 0; j < cols; j++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
                 if (board[i][j] == 1) {
                     disp[i][j] = 'O';
                 } else {
@@ -39,19 +40,46 @@ public class Snake4 {
                 }
             }
         }
-        for(int[] part:snake) {
-            disp[part[0]][part[1]] ='s';
+        for (int[] part : snake) {
+            disp[part[0]][part[1]] = 's';
         }
-        for(int r = 0; r < rows;r++) {
+        for (int r = 0; r < rows; r++) {
             StringBuilder sb = new StringBuilder();
-            for(int c = 0; c < cols; c++ ) {
+            for (int c = 0; c < cols; c++) {
                 sb.append(disp[r][c]);
             }
             System.out.println(sb.toString());
         }
-   }
-    public static void move(int[][] board, List<int[]> snake, char op) {
+    }
 
+    static boolean isValid(int[][] board, int row, int col) {
+        int rows = board.length;
+        int cols = board[0].length;
+        return row >= 0 && row < rows && col >= 0 && col < cols;
+    }
+
+    static void moveSnake(int[][] board, List<int[]> snake, char op) {
+        int len = snake.size();
+        int[] head = snake.get(len - 1);
+        int newRow = head[0];
+        int newCol = head[1];
+        if (op =='l') {
+            newCol--;
+        } else if (op == 'r') {
+            newCol++;
+        } else if (op =='u') {
+            newRow--;
+        } else {
+            newRow++;
+        }
+        if (isValid(board, newRow, newCol)) {
+            if (board[newRow][newCol] == 0) {
+                snake.remove(0);
+            } else {
+                board[newRow][newCol] = 0;
+            }
+            snake.add(new int[]{newRow, newCol});
+        }
     }
 
     private static void placeObstacles(int[][] board, int count) {
