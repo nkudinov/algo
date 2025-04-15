@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.CompletableFuture;
 
 public class Snake4 {
 
@@ -79,6 +80,7 @@ public class Snake4 {
                 board[newRow][newCol] = 0;
             }
             snake.add(new int[]{newRow, newCol});
+
         }
     }
 
