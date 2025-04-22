@@ -17,16 +17,16 @@ public class Tetris3 {
             System.out.println("Enter, x- exit, l - left, r - right, d - drop:");
             op = scanner.nextLine().charAt(0);
             switch (op) {
-              case  'l' ->figureCol = Math.max(0, figureCol- 1);
-              case  'r' ->figureCol = Math.min(COLS-2, figureCol+1);
-              case 'd' -> dropFigure(figureCol, board, figure);
+                case 'l' -> figureCol = Math.mlax(0, figureCol - 1);
+                case 'r' -> figureCol = Math.min(COLS - 2, figureCol + 1);
+                case 'd' -> dropFigure(figureCol, board, figure);
             }
         }
     }
 
     private static void dropFigure(int figureCol, int[][] board, int[][] figure) {
         int row = 0;
-        while ( canPlace(row, figureCol, board, figure)) {
+        while (canPlace(row, figureCol, board, figure)) {
             row++;
         }
         row--;
@@ -34,8 +34,8 @@ public class Tetris3 {
     }
 
     private static void placeFigure(int row, int figureCol, int[][] board, int[][] figure) {
-        for(int r = 0; r < figure.length; r++) {
-            for(int c = 0; c < figure[0].length;c++) {
+        for (int r = 0; r < figure.length; r++) {
+            for (int c = 0; c < figure[0].length; c++) {
                 if (figure[r][c] == 0) {
                     continue;
                 }
@@ -47,22 +47,22 @@ public class Tetris3 {
     }
 
     private static boolean canPlace(int row, int figureCol, int[][] board, int[][] figure) {
-         for(int r = 0; r < figure.length; r++) {
-             for(int c = 0; c < figure[0].length;c++) {
-                 int boardRow = row + r;
-                 int boardCol = figureCol + c;
-                 if (boardRow >= board.length || boardCol >= board[0].length) {
-                     return false;
-                 }
-                 if (figure[r][c] == 0) {
-                     continue;
-                 }
-                 if (board[boardRow][boardCol] == 1) {
-                     return false;
-                 }
-             }
-         }
-         return true;
+        for (int r = 0; r < figure.length; r++) {
+            for (int c = 0; c < figure[0].length; c++) {
+                int boardRow = row + r;
+                int boardCol = figureCol + c;
+                if (boardRow >= board.length || boardCol >= board[0].length) {
+                    return false;
+                }
+                if (figure[r][c] == 0) {
+                    continue;
+                }
+                if (board[boardRow][boardCol] == 1) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private static void display(int figureCol, int[][] board, int[][] figure) {
