@@ -17,7 +17,7 @@ public class Tetris3 {
             System.out.println("Enter, x- exit, l - left, r - right, d - drop:");
             op = scanner.nextLine().charAt(0);
             switch (op) {
-                case 'l' -> figureCol = Math.mlax(0, figureCol - 1);
+                case 'l' -> figureCol = Math.max(0, figureCol - 1);
                 case 'r' -> figureCol = Math.min(COLS - 2, figureCol + 1);
                 case 'd' -> dropFigure(figureCol, board, figure);
             }

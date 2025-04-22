@@ -16,7 +16,7 @@ public class Snake4 {
         snake.add(new int[]{0, 0});
         char op = '?';
         Scanner scanner = new Scanner(System.in);
-        while (op != 'x') {
+        while (true) {
             display(board, snake);
             System.out.println("enter, x = exit, l = left, r = right, u = up, d = down:");
             op = scanner.nextLine().charAt(0);
