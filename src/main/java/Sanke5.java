@@ -20,8 +20,14 @@ public class Sanke5 {
                 moveLeft(board, snake);
             } else if (op == 'r') {
                 moreRight(board, snake);
+            } else if (op == 'd') {
+                moveDown(board, snake);
             }
         }
+
+    }
+
+    private static void moveDown(int[][] board, List<int[]> snake) {
 
     }
 
