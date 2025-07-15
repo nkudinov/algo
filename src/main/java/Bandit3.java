@@ -7,8 +7,10 @@ public class Bandit3 {
         int[] counts = new int[3];
         double epsilon = 0.01;
         Random rand = new Random();
+        double decayRate    = 0.9999999;
         for (int i = 0; i < 100000; i++) {
             int index = 0;
+            epsilon *= decayRate;
             if (rand.nextDouble() < epsilon) {
                 index = rand.nextInt(3);
             } else {
