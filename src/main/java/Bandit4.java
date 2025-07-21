@@ -9,7 +9,7 @@ public class Bandit4 {
     static int[] counts = new int[trueProbability.length];
 
     public static void main(String[] args) {
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 100000000; i++) {
             int action = 0;
             if (rand.nextDouble() <= epsilon) {
                 action = rand.nextInt(actions.length);
@@ -20,11 +20,11 @@ public class Bandit4 {
             counts[action]++;
 
             int reward = rand.nextDouble() <= trueProbability[action] ? 1 : 0;
-            guessProbability[action]++;
+            counts[action]++;
             // avg = (old*(n-1) + new)/n => old + (new-old)/n
-            guessProbability[action] += reward-guessProbability[action];
+            guessProbability[action] += (reward - guessProbability[action]) / counts[action];
         }
-        for(double prob:guessProbability){
+        for (double prob : guessProbability) {
             System.out.println("%.4f".formatted(prob));
         }
     }
