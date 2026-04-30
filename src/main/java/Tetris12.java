@@ -2,89 +2,121 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Tetris12 {
+    private static final int BOARD_ROWS = 10;
+    private static final int BOARD_COLS = 10;
+    private static final int FILLED = 1;
+    private static final int EMPTY = 0;
+    private static final int START_COLUMN = 0;
+
+    private static final char EMPTY_CHAR = '.';
+    private static final char LOCKED_BLOCK_CHAR = 'x';
+    private static final char ACTIVE_BLOCK_CHAR = '0';
+    private static final char EXIT_COMMAND = 'x';
+
     public static void main(String[] args) {
-        int[][] mat = new int[10][10];
-        int[][] fig = new int[][]{{1, 1,1,1,1}};
-        int col = 0;
-        char op = '.';
-        Scanner scanner = new Scanner(System.in);
-        while (op != 'x') {
-            process(col, mat, fig);
-            display(col, mat, fig);
-            op = scanner.next().charAt(0);
-            switch (op) {
-                case 'l' -> col = moveLeft(col, fig, mat);
-                case 'r' -> col = moveRight(col, fig, mat);
-                case 'd' -> {
-                    dropFig(col, fig, mat);
-                    col = 0;
-                }
+        int[][] board = new int[BOARD_ROWS][BOARD_COLS];
+        int[][] figure = createFigure();
+        int currentColumn = START_COLUMN;
+        char command = EMPTY_CHAR;
+
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (command != EXIT_COMMAND) {
+                process(board);
+                display(currentColumn, board, figure);
+
+                command = scanner.next().charAt(0);
+                currentColumn = applyCommand(command, currentColumn, figure, board);
             }
         }
     }
 
-    private static void process(int col, int[][] mat, int[][] fig) {
-        for (int r = mat.length - 1; r >= 0; r--) {
-            int cnt = 0;
-            for (int c = 0; c < mat[0].length; c++) {
-                if (mat[r][c] == 1) {
-                    cnt++;
-                }
-            }
-            if (cnt == mat[0].length) {
-                for (int rr = r; rr > 0; rr--) {
-                    System.arraycopy(mat[rr - 1], 0, mat[rr], 0, mat[0].length);
-                }
-                Arrays.fill(mat[0], 0);
-                r++;
-            }
-
-        }
+    private static int[][] createFigure() {
+        return new int[][]{{FILLED, FILLED, FILLED, FILLED, FILLED}};
     }
 
-    private static void dropFig(int col, int[][] fig, int[][] mat) {
-        int row = 0;
-        while (canPlace(row, col, fig, mat)) {
+    private static int applyCommand(char command, int currentColumn, int[][] figure, int[][] board) {
+        return switch (command) {
+            case 'l' -> moveLeft(currentColumn, figure, board);
+            case 'r' -> moveRight(currentColumn, figure, board);
+            case 'd' -> {
+                dropFigure(currentColumn, figure, board);
+                yield START_COLUMN;
+            }
+            default -> currentColumn;
+        };
+    }
+
+    private static void process(int[][] board) {
+        for (int row = board.length - 1; row >= 0; row--) {
+            if (!isRowFull(board[row])) {
+                continue;
+            }
+
+            shiftRowsDownFrom(board, row);
             row++;
         }
-        place(row - 1, col, fig, mat);
     }
 
-    private static void place(int row, int col, int[][] fig, int[][] mat) {
-        for (int r = 0; r < fig.length; r++) {
-            for (int c = 0; c < fig[0].length; c++) {
-                if (fig[r][c] == 0) {
+    private static boolean isRowFull(int[] row) {
+        for (int cell : row) {
+            if (cell != FILLED) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static void shiftRowsDownFrom(int[][] board, int fromRow) {
+        for (int row = fromRow; row > 0; row--) {
+            System.arraycopy(board[row - 1], 0, board[row], 0, board[0].length);
+        }
+        Arrays.fill(board[0], EMPTY);
+    }
+
+    private static void dropFigure(int currentColumn, int[][] figure, int[][] board) {
+        int row = 0;
+        while (canPlace(row, currentColumn, figure, board)) {
+            row++;
+        }
+        place(row - 1, currentColumn, figure, board);
+    }
+
+    private static void place(int row, int col, int[][] figure, int[][] board) {
+        for (int figureRow = 0; figureRow < figure.length; figureRow++) {
+            for (int figureCol = 0; figureCol < figure[0].length; figureCol++) {
+                if (figure[figureRow][figureCol] == EMPTY) {
                     continue;
                 }
-                mat[row + r][col + c] = 1;
+                board[row + figureRow][col + figureCol] = FILLED;
             }
         }
     }
 
-    private static int moveRight(int col, int[][] fig, int[][] mat) {
-        if (col + fig[0].length > mat[0].length || !canPlace(0, col + 1, fig, mat)) {
-            return col;
+    private static int moveRight(int currentColumn, int[][] figure, int[][] board) {
+        if (currentColumn + figure[0].length > board[0].length
+                || !canPlace(0, currentColumn + 1, figure, board)) {
+            return currentColumn;
         }
-        return col + 1;
+        return currentColumn + 1;
     }
 
-    private static int moveLeft(int col, int[][] fig, int[][] mat) {
-        if (col - 1 < 0 || !canPlace(0, col - 1, fig, mat)) {
-            return col;
+    private static int moveLeft(int currentColumn, int[][] figure, int[][] board) {
+        if (currentColumn - 1 < 0 || !canPlace(0, currentColumn - 1, figure, board)) {
+            return currentColumn;
         }
-        return col - 1;
+        return currentColumn - 1;
     }
 
-    private static boolean canPlace(int row, int col, int[][] fig, int[][] mat) {
-        for (int r = 0; r < fig.length; r++) {
-            for (int c = 0; c < fig[0].length; c++) {
-                if (fig[r][c] == 0) {
+    private static boolean canPlace(int row, int col, int[][] figure, int[][] board) {
+        for (int figureRow = 0; figureRow < figure.length; figureRow++) {
+            for (int figureCol = 0; figureCol < figure[0].length; figureCol++) {
+                if (figure[figureRow][figureCol] == EMPTY) {
                     continue;
                 }
-                if (row + r >= mat.length || col + c >= mat[0].length) {
+                if (row + figureRow >= board.length || col + figureCol >= board[0].length) {
                     return false;
                 }
-                if (mat[row + r][col + c] == 1) {
+                if (board[row + figureRow][col + figureCol] == FILLED) {
                     return false;
                 }
             }
@@ -92,31 +124,34 @@ public class Tetris12 {
         return true;
     }
 
-    private static void display(int col, int[][] mat, int[][] fig) {
-        char[][] disp = new char[mat.length][mat[0].length];
-        for (int r = 0; r < mat.length; r++) {
-            Arrays.fill(disp[r], '.');
-            for (int c = 0; c < mat[0].length; c++) {
-                if (mat[r][c] == 0) {
+    private static void display(int currentColumn, int[][] board, int[][] figure) {
+        char[][] screen = new char[board.length][board[0].length];
+
+        for (int row = 0; row < board.length; row++) {
+            Arrays.fill(screen[row], EMPTY_CHAR);
+            for (int col = 0; col < board[0].length; col++) {
+                if (board[row][col] == EMPTY) {
                     continue;
                 }
-                disp[r][c] = 'x';
+                screen[row][col] = LOCKED_BLOCK_CHAR;
             }
         }
-        for (int r = 0; r < fig.length; r++) {
-            for (int c = 0; c < fig[0].length; c++) {
-                if (fig[r][c] == 0) {
+
+        for (int row = 0; row < figure.length; row++) {
+            for (int col = 0; col < figure[0].length; col++) {
+                if (figure[row][col] == EMPTY) {
                     continue;
                 }
-                disp[r][col + c] = '0';
+                screen[row][currentColumn + col] = ACTIVE_BLOCK_CHAR;
             }
         }
-        for (int r = 0; r < disp.length; r++) {
+
+        for (int row = 0; row < screen.length; row++) {
             StringBuilder sb = new StringBuilder();
-            for (int c = 0; c < disp[0].length; c++) {
-                sb.append(disp[r][c]).append(' ');
+            for (int col = 0; col < screen[0].length; col++) {
+                sb.append(screen[row][col]).append(' ');
             }
-            System.out.println(sb.toString());
+            System.out.println(sb);
         }
     }
 }
